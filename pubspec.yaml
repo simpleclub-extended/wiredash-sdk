@@ -22,6 +22,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito:
+  device_preview: ^0.4.5
+  flutter_localizations:
+    sdk: flutter
 
 flutter:
   assets:

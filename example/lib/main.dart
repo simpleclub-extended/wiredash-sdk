@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:wiredash/wiredash.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wiredash/src/common/translation/l10n/messages_pl.dart' as pl;
 
 part 'main_localizations.dart';
 
-void main() => runApp(const ExampleApp());
+void main() => runApp(
+      DevicePreview(
+        builder: (context) => const ExampleApp(),
+      ),
+    );
 
 class ExampleApp extends StatefulWidget {
   const ExampleApp({Key key}) : super(key: key);
@@ -44,14 +50,22 @@ class _ExampleAppState extends State<ExampleApp> {
         // },
 
         /// Uncomment below to override default device locale
-        // locale: const Locale('de'),
-        // textDirection: TextDirection.rtl,
+        locale: const Locale('ar'),
+        textDirection: TextDirection.rtl,
       ),
       theme: WiredashThemeData(brightness: Theme.of(context).brightness),
       child: MaterialApp(
         navigatorKey: _navigatorKey,
         title: 'Adventure 🌎',
         home: const DemoHomePage(),
+        builder: DevicePreview.appBuilder,
+        locale: DevicePreview.of(context).locale,
+        localizationsDelegates: [
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [Locale('en'), Locale('ar')],
       ),
     );
   }
